@@ -6,7 +6,9 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
-
+import { FormsModule } from "@angular/forms";
+import { ComponentsModule } from '../components/components.module';
+import { ChartsModule } from "ng2-charts";
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -16,7 +18,10 @@ import { PagesRoutingModule } from './pages-routing.module';
   ],
   imports: [  
     SharedModule,
-    PagesRoutingModule  
+    PagesRoutingModule,
+    FormsModule,
+    ComponentsModule,
+    ChartsModule    
   ],
   exports: [
     DashboardComponent,

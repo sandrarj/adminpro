@@ -1,0 +1,13 @@
+<div>
+  <div>
+    <h5></h5>
+    <div style="display: block" *ngIf="data!=undefined && labels!=undefined && ctype!=undefined">
+      <canvas baseChart 
+        [data]="data" 
+        [labels]="labels" 
+        [chartType]="ctype">
+      </canvas>
+    </div>
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+  </div>
+</div>
