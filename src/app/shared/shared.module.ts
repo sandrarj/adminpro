@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumsComponent } from './breadcrums/breadcrums.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,    
-    AppRoutingModule
+    //AppRoutingModule
+    RouterModule
   ],
   exports: [
     HeaderComponent,
