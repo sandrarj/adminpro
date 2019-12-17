@@ -11,6 +11,8 @@ import { ComponentsModule } from '../components/components.module';
 import { ChartsModule } from "ng2-charts";
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.component';
+import { Promesas1Component } from './promesas1/promesas1.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
     Graficas1Component,      
     NopagefoundComponent,
     PagesComponent,
-    AccountSettingComponent
+    AccountSettingComponent,
+    Promesas1Component,
+    RxjsComponent
   ],
   imports: [  
     SharedModule,
@@ -32,7 +36,8 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
-    PagesComponent
+    PagesComponent,
+    Promesas1Component
   ],
   providers: [    
   ]
