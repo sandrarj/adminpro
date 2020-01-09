@@ -8,10 +8,12 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { Promesas1Component } from "./promesas1/promesas1.component";
 import { RxjsComponent } from "./rxjs/rxjs.component";
+import { LoginGuardGuard } from '../services/service.index';
 const pagesRoutes: Routes = [
    {
      path: '',   
      component: PagesComponent,
+     canActivate: [LoginGuardGuard],
      children: [
        {path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard' } },
        {path: 'progress', component: ProgressComponent, data: {titulo: 'Progress' }},

@@ -13,8 +13,7 @@ export class BreadcrumsComponent implements OnInit {
   constructor( private router:Router, private title:Title, private meta: Meta) {
     this.getDataRoute() 
     .subscribe( 
-      data => { 
-        console.log(data); 
+      data => {  
         this.titulo = data.titulo;
         this.title.setTitle(this.titulo);
         const metaTag: MetaDefinition = {

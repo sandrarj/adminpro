@@ -1,23 +1,69 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NgForm } from '@angular/forms';
+import { UsuarioService } from '../services/service.index';
+import { Usuario } from '../models/usuario.model';
+//declare function init_plugins();
+declare const gapi: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'] 
 })
 export class LoginComponent implements OnInit {
+  recuerdame: boolean = false;
+  email: string;
+  auth2: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public _usuarioServices: UsuarioService) { }
 
   ngOnInit() {
+    //init_plugins();
+    this.googleInit();
+
+    this.email = localStorage.getItem('email') || ''; 
+    if( this.email.length > 1){
+      this.recuerdame = true;
+    }
+  }  
+
+  googleInit(){
+    gapi.load('auth2', () =>{
+      this.auth2 = gapi.auth2.init({
+        client_id: '554681290117-oleol91c0gtm2rg80upht7rm9c4i7fc5.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        scope: 'profile email'
+      });
+      this.attachSignin( document.getElementById('btnGoogle'));
+    });    
   }
 
-  ingresar(){
-    //this.router.navigateByUrl['dashboard'];
+  attachSignin( element ){
+    this.auth2.attachClickHandler( element, {}, (googleUser) =>{
+     // let profile = googleUser.getBasicProfile();
+      
+      let token = googleUser.getAuthResponse().id_token;
+      this._usuarioServices.loginGoogle( token ).subscribe( 
+        //resp => this.router.navigate(['/dashboard'])
+        () => window.location.href='#/dashboard'
+      )
+      console.log(token)
+    });
+  }
+
+  ingresar( forma: NgForm){
+
+    if( forma.invalid){ return }
     
-    this.router.navigate(['/dashboard']);    
-    console.log('ingresando');
+    let usuario = new Usuario(
+      null, 
+      forma.value.email, 
+      forma.value.password,
+      forma.value.recuerdame 
+    );
+    this._usuarioServices.login( usuario, forma.value.recuerdame ).subscribe(
+      resp => this.router.navigate(['/dashboard'])      
+    )
   }
 
 }
