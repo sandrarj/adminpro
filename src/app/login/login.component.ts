@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
 
   ingresar( forma: NgForm){
 
-    if( forma.invalid){ return }
+    if( forma.invalid){ 
+      console.log('forma invalid')
+      return
+    }
     
     let usuario = new Usuario(
       null, 
@@ -61,8 +64,10 @@ export class LoginComponent implements OnInit {
       forma.value.password,
       forma.value.recuerdame 
     );
+    console.log(usuario)
     this._usuarioServices.login( usuario, forma.value.recuerdame ).subscribe(
-      resp => this.router.navigate(['/dashboard'])      
+      //resp => this.router.navigate(['/dashboard'])
+      () => window.location.href='#/dashboard'      
     )
   }
 

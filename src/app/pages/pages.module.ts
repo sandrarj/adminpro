@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
@@ -8,11 +7,19 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule } from "@angular/forms";
 import { ComponentsModule } from '../components/components.module';
-import { ChartsModule } from "ng2-charts";
+
 import { AccountSettingComponent } from './account-setting/account-setting.component';
 import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.component';
 import { Promesas1Component } from './promesas1/promesas1.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+// ng2-charts
+import { ChartsModule } from "ng2-charts";
+// Pipe Module
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
+import { SubirArchivoService } from '../services/service.index';
+// temporal
 
 @NgModule({
   declarations: [
@@ -23,14 +30,17 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     PagesComponent,
     AccountSettingComponent,
     Promesas1Component,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   imports: [  
     SharedModule,
     PagesRoutingModule,
     FormsModule,
     ComponentsModule,
-    ChartsModule  
+    ChartsModule,
+    PipesModule,
+    CommonModule 
   ],
   exports: [
     DashboardComponent,
@@ -39,7 +49,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     PagesComponent,
     Promesas1Component
   ],
-  providers: [    
+  providers: [ 
+    SubirArchivoService   
   ]
 
 })
