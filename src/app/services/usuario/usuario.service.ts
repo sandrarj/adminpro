@@ -19,7 +19,6 @@ export class UsuarioService {
   constructor( public http: HttpClient, 
     public router: Router,
     public  _subirArchivoService: SubirArchivoService) {
-    console.log('usuario service listo');
     this.cargarStorage();
   }
 
@@ -97,15 +96,18 @@ export class UsuarioService {
     )
   }
 
-  actualizar( usuario: Usuario){
+  actualizarUsuario( usuario: Usuario){
 
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
     url+= '?token=' + this.token;
     return this.http.put(url, usuario).pipe(
       map( (resp:any) => {
-        this.usuario = resp.usuario;        
-        this.guardarstorage(resp.usuario._id, this.token,resp.usuario)
-        swal('Usuario actualizado', usuario.nombre,"success");
+        if( usuario._id === resp.usuario ){
+          let usuarioDB: Usuario = resp.usuario;      
+          this.guardarstorage(usuarioDB._id, this.token,resp.usuario)
+         
+        }
+         swal('Usuario actualizado', usuario.nombre,"success");
         return true;
       })
     );
@@ -119,5 +121,31 @@ export class UsuarioService {
       this.guardarstorage( id, this.token, this.usuario);
     })
     .catch(err => { console.log(err)})
+  }
+
+  cargarUsuarios(desde: number = 0 ){
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get(url);
+  }
+
+  buscarUsuarios( termino: string){
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url ).pipe(
+      map( (resp:any) => {
+        return resp.usuarios;
+      } )
+    ) 
+  }
+
+  borrarUsuario( id: string ){
+    let url = URL_SERVICIOS + '/usuario/'+ id;
+    url += '?token=' + this.token;
+    //controlar el error si el token ya expiró
+    return this.http.delete( url ).pipe(
+      map( (resp:any) => {
+        swal('Usuario borrado', 'El usuario ' +resp.usuario.nombre +' ha sido eliminado correctamente','success');
+        return true;
+      } )
+    )
   }
 }

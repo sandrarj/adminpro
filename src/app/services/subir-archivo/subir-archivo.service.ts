@@ -11,6 +11,7 @@ export class SubirArchivoService {
   }
   //subir cualquier archivo
   //tipo: medico, usuario, hospital
+  //id: usuario._id
   subirArchivo( archivo:File, tipo:string, id:string ){
     return new Promise( (resolve, reject) => {
       let formData = new FormData();

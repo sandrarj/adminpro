@@ -19,6 +19,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { SubirArchivoService } from '../services/service.index';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 // temporal
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SubirArchivoService } from '../services/service.index';
     AccountSettingComponent,
     Promesas1Component,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent
   ],
   imports: [  
     SharedModule,
