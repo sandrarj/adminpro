@@ -54,7 +54,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   buscarUsuario( termino: string){
-    console.log(termino)
      if( termino.length <= 0 ){
        this.cargarUsuarios();
        return;
@@ -69,7 +68,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   borrarUsuario( usuario: Usuario){
-    console.log(usuario);
     if( usuario._id === this._usuarioServices.usuario._id){
       swal('No puede borrar usuario','No se puede borrar a si mismo','success');
       return;
@@ -86,8 +84,6 @@ export class UsuariosComponent implements OnInit {
            // swal('Borrado','El usuario ha sido borrado','success');
             this._usuarioServices.borrarUsuario( usuario._id ).subscribe(
               (resp:any) => { 
-                console.log('usuario component:')
-                console.log(resp);
                 this.cargarUsuarios();
               }
             )

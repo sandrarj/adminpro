@@ -1,0 +1,75 @@
+<div class="row animate fadeIn">
+  <div class="col-12">
+   <div class="card">
+    <div class="card-body">     
+     <input #input (keyup)="buscarHospital( input.value )" type="text" class="form-control" placeholder="Buscar hospital">
+     </div>
+    </div>
+   </div>
+  </div>
+ 
+  
+  <div class="row animate fadeIn" *ngIf="cargando">
+   <div class="col-12">
+   <div class="alert alert-warning text-center">
+     <strong>Cargando</strong>
+     <br>
+     <i class="fa fa-refresh fa-spin fa-2x"></i>
+     <br>
+     <span>Espere por favor</span>
+   </div>
+ </div>
+ </div>
+ 
+  <div class="row animate fadeIn" *ngIf="!cargando">
+   <div class="col-sm-12">
+    <div class="card">
+     <div class="card-body">
+      <!-- <a class="btn btn-rounded btn-primary btn-sm " routerlink="/hospital" ng-reflect-router-link="/perfil" href="#/perfil">+ Crear Hospital</a> -->
+       
+        <div class="text-right">
+          <button class="btn btn-rounded btn-primary btn-sm waves-effect" (click)="crearHospital()">
+            <i class="fa fa-plus"> Crear Hospital</i></button>
+        </div>
+      <h3 class="card-title">hospitales registrados (
+         <small>{{totalRegistros}}</small>)         
+       </h3>
+
+       <table class="table table-hover">
+         <thead>
+         <tr>
+           <th>Imagen</th>
+           <th>Nombre</th>
+           <th></th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let hospital of hospitales" >
+           <td>
+             <img (click)="actualizarImagen(hospital)" [src] = "hospital.img  | imagen :'hospital' " class="img-50">
+           </td>
+           <td>
+             <input type="text" [(ngModel)]="hospital.nombre" placeholder="">
+           </td>
+           <td>
+             <button (click)="guardarHospital(hospital)" class="btn btn-primary">
+               <i class="fa fa-save"></i>
+             </button>
+             <button (click)="borrarHospital(hospital)" class="btn btn-danger">
+               <i class="fa fa-trash-o"></i>
+             </button>
+             <!-- <button (click)="obtenerHospital(hospital)" class="btn btn-secondary">
+              <i class="fa fa-windows"></i>
+            </button> -->
+           </td>
+         </tr>
+       </tbody>
+       </table>
+       <button class="btn btn-secondary" (click)="cambiarDesde(-5)">Anteriores</button>
+       <button class="btn btn-secondary" (click)="cambiarDesde(5)">siguientes</button>
+  
+      </div>
+     </div>
+    </div>
+   </div>
+ 

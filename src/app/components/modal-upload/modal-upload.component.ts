@@ -11,9 +11,9 @@ import { ModalUploadService } from './modal-upload.service';
 export class ModalUploadComponent implements OnInit { 
   imagensubir: File;
   imagenTemp: string;
+  
   constructor( public _subirArchivoService: SubirArchivoService, public _modalService: ModalUploadService) {
-    console.log('modallisto');
-
+    
    }
 
   ngOnInit() {
@@ -32,7 +32,6 @@ export class ModalUploadComponent implements OnInit {
     }
 
     this.imagensubir = archivo;
-    console.log(this.imagensubir);
 
     let reader = new FileReader();
     let urlImagenTemp = reader.readAsDataURL( archivo );
@@ -46,7 +45,6 @@ export class ModalUploadComponent implements OnInit {
    // this.oculto = 'oculto';
     this._subirArchivoService.subirArchivo( this.imagensubir, this._modalService.tipo, this._modalService.id)
     .then( resp => {
-      console.log(resp)
         this._modalService.notificacion.emit( resp );
         //this._modalService.ocultarModal();
         this.cerrarModal();

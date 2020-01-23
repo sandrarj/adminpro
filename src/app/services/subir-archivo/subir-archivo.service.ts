@@ -16,8 +16,9 @@ export class SubirArchivoService {
     return new Promise( (resolve, reject) => {
       let formData = new FormData();
       let xhr = new XMLHttpRequest();
-
+      
       formData.append('imagen', archivo,  archivo.name );
+      
       //peticion ajax, recibo información a cada cambio
       xhr.onreadystatechange = function(){
         if( xhr.readyState === 4){

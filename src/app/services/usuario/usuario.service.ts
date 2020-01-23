@@ -64,7 +64,6 @@ export class UsuarioService {
     }
     
     let url = URL_SERVICIOS + "/login";
-    console.log(url)
     
     return this.http.post(url, usuario).pipe(
       map( (resp:any) => {

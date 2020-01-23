@@ -18,8 +18,11 @@ import { ChartsModule } from "ng2-charts";
 import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
-import { SubirArchivoService } from '../services/service.index';
+import { SubirArchivoService} from '../services/service.index';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 // temporal
 
 @NgModule({
@@ -33,7 +36,10 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     Promesas1Component,
     RxjsComponent,
     ProfileComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent
   ],
   imports: [  
     SharedModule,
@@ -52,7 +58,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     Promesas1Component
   ],
   providers: [ 
-    SubirArchivoService   
+    SubirArchivoService
   ]
 
 })

@@ -1,0 +1,65 @@
+<div class="row animate fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input #input (keyup)="buscarMedico( input.value )" type="text" class="form-control"
+          placeholder="Buscar medico">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animate fadeIn" *ngIf="!cargando">
+  <div class="col-sm-12">
+   <div class="card">
+    <div class="card-body">   
+      
+       <div class="text-right">
+         <button class="btn btn-rounded btn-primary btn-sm waves-effect" 
+                 [routerLink]="['/medico','nuevo']">
+           <i class="fa fa-plus"> Crear medico</i></button>
+       </div>
+     <h3 class="card-title">Medicos registrados (
+        <small>{{totalRegistros}}</small>)         
+      </h3>
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Hospital</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medico of medicos" >
+          <td>
+            <img (click)="actualizarImagen(medico)" [src] = "medico.img  | imagen :'medico' " class="img-50">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="medico.nombre" placeholder="">
+          </td>
+          <td>
+            {{ medico.hospital.nombre}}
+          </td>
+          <td>
+            <button [routerLink]="['/medico',medico._id]" class="btn btn-primary">
+              <i class="fa fa-save"></i>
+            </button>
+            <button (click)="borrarMedico(medico)" class="btn btn-danger">
+              <i class="fa fa-trash-o"></i>
+            </button>
+            <!-- <button (click)="obtenermedico(medico)" class="btn btn-secondary">
+             <i class="fa fa-windows"></i>
+           </button> -->
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <button class="btn btn-secondary" (click)="cambiarDesde(-5)">Anteriores</button>
+      <button class="btn btn-secondary" (click)="cambiarDesde(5)">siguientes</button>
+ 
+     </div>
+    </div>
+   </div>
+  </div>
