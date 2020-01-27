@@ -11,7 +11,7 @@
                         <div class="input-group-addon"><i class="ti-user"></i></div>
                         <input [ngModel]="usuario.nombre" name="nombre"
                         type="text" class="form-control" 
-                        id="exampleInputuname" placeholder="Username">
+                        id="exampleInputuname" placeholder="Username" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -19,7 +19,7 @@
                     <div class="input-group">
                         <div class="input-group-addon"><i class="ti-email"></i></div>
                         <input [ngModel]="usuario.email" name="email" [disabled]="usuario.google"
-                        type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo del usuario">
+                        type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo del usuario" required>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
@@ -34,7 +34,7 @@
       <div class="card-body" align="center">
           <h4 class="card-title">Fotografía del usuario</h4>
           <h6 class="card-subtitle">{{usuario.img}}</h6>
-          <img *ngIf="!imagenTemp" [src]="usuario.img | imagen" class="w150">
+          <img *ngIf="!imagenTemp" [src]="usuario.img | imagen:'usuario'" class="w150">
           <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150" ><br><br>
           <input type="file" (change)="seleccionImagen($event.target.files[0])">
 

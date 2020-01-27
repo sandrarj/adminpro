@@ -6,6 +6,7 @@ import { UsuarioService } from './usuario/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
+import { AdminGuard } from './guards/admin.guard';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,8 +17,10 @@ import { ModalUploadService } from '../components/modal-upload/modal-upload.serv
     SharedService,
     SidebarService,
     UsuarioService,
+    ModalUploadService,
+    
     LoginGuardGuard,
-    ModalUploadService
+    AdminGuard
   ]
   
 })

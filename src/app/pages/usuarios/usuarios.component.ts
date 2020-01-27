@@ -16,6 +16,8 @@ export class UsuariosComponent implements OnInit {
   desde: number = 0;
   totalRegistros: number = 0;
   cargando: boolean;
+  termino: string;
+  
   constructor(public _usuarioServices: UsuarioService,
     public _modalUploadService: ModalUploadService) { }
 
@@ -26,6 +28,7 @@ export class UsuariosComponent implements OnInit {
         this.cargarUsuarios();
       }
     )
+    
   }
 
   cargarUsuarios(){
